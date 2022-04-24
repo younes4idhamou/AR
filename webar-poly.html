@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Testing out WebAR (A-Frame/AR.js) with the Google Poly API
+https://github.com/gabrielmartins/googlepoly-webar-arjs
+
+A-Frame v0.7.1: aframe.io 
+
+AR.js by jeromeetienne: https://github.com/jeromeetienne/AR.js
+
+Google Poly API: https://developers.google.com/poly/develop/api
+
+Using Poly API call implemented by Utopiah: https://github.com/Utopiah/googlepoly-load-component
+
+"That Expensive Chair" Poly Model by Vladimir Iiirc: https://poly.google.com/view/5osCtu2pLwv
+-->
+
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script src='arjs/aframe-ar.js'></script>
+    <script>THREE/ArToolkitContext.baseURL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.js'</script>
+    <script src="polyload/googlepoly-load-component.js"></script>
+  </head>
+  <body>
+        
+    <a-scene stats embedded arjs='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180; debugUIEnabled: false'>
+
+        <a-entity light="type:ambient; intensity:0.5"></a-entity>
+        <a-entity light="type:directional;castShadow:true" position="3 3 -5" rotation="0 7 -20"></a-entity>
+
+        <a-marker-camera preset='hiro' position="0 0 0">
+            <a-entity rotation="0 0 0">
+              <a-entity position="0 0 -3" gpoly="polyid:5osCtu2pLwv; API_KEY:AIzaSyDbjx5UOZhQ7YeSMK1BtM--xuSsuq_9fAA;">
+                  <a-animation attribute="rotation" dur="10000" to="0 360 0" repeat="indefinite"></a-animation>
+              </a-entity>
+            </a-entity>
+        </a-marker-camera>
+    </a-scene>
+  </body>
+</html>
